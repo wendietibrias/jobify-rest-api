@@ -92,9 +92,11 @@ export class JobService {
 
     async getAllJob(query : FilterDTO) {
         try {
+
             const skip : number = Number(query.page) > 1 ? (Number(query.page) - 1) * Number(query.per_page) : 0;
             const findUserJob =  await this.jobModel
                                                 .where('user_id' , this.userId)
+                                                .where('position').regex(new RegExp(query.search, 'i'))
                                                 .where('status').regex(new RegExp(query.status , 'i'))
                                                 .where('jobType').regex(new RegExp(query.type))
                                                 .limit(6)
