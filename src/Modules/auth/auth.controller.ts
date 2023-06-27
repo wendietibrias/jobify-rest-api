@@ -1,6 +1,7 @@
-import { Controller,Get,Post,Delete,Put,HttpCode,Body } from "@nestjs/common";
+import { Controller,Get,Post,Delete,Put,HttpCode,Body,Req } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { LoginDTO, RegisterDTO } from "./auth.dto";
+import { Request } from "express";
 
 @Controller('api/auth')
 
@@ -25,7 +26,9 @@ export class AuthController {
 
     @HttpCode(200)
     @Delete('logout')
-    async logout() {
-        return await this.authService.logout();
+    async logout(
+        @Req() req : Request
+    ) {
+        return await this.authService.logout(req.headers.authorization);
     }
 }

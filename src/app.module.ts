@@ -10,7 +10,7 @@ import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(`${process.env.MONGO_URI}`),
+    MongooseModule.forRoot("mongodb+srv://wendietibrias:1234@cluster0.pf1svjc.mongodb.net/jobify-production?retryWrites=true&w=majority"),
     JwtModule.register({
        global:true,
        secret:"auth",

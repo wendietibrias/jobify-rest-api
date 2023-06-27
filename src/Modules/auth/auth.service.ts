@@ -97,13 +97,9 @@ export class AuthService {
         throw new HttpException("Failed to save user" , 500);
     }
 
-    async logout() {
+    async logout(token : string) {
 
-        const findUser = await this.findUserById();
-
-        if(!findUser) {
-            throw new UnauthorizedException("Unauthorized");
-        }
+        const findUser = await this.userModel.findOne({ login_token:token.split(" ")[1] });
 
         findUser.login_token = null;
 

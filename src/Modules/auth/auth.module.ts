@@ -21,8 +21,6 @@ import { AuthorizeMiddleware } from "src/Middleware/authorize.user";
     ]
 })
 
-export class AuthModule implements NestModule {
-     configure(consumer : MiddlewareConsumer) {
-         consumer.apply(AuthorizeMiddleware).forRoutes('api/auth/logout')
-     }
+export class AuthModule  {
+    
 }
